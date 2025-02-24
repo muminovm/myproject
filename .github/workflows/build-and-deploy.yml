@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - master  # Если твоя ветка называется иначе, изменяй на нужную
+      - main # Если твоя ветка называется иначе, изменяй на нужную
 
 jobs:
   deploy:
@@ -16,8 +16,8 @@ jobs:
       - name: Логин в Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          username: ${{ secrets.muminovm42 }}
+          password: ${{ secrets.Madara022042 }}
 
       - name: Установка переменной с тегом
         run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
