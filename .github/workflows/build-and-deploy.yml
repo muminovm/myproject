@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # Измени на нужную ветку, если требуется
+      - main # Если твоя ветка называется иначе, измени её здесь
 
 jobs:
   deploy:
@@ -24,18 +24,5 @@ jobs:
 
       - name: Сборка и пуш образа
         run: |
-          echo "IMAGE_TAG is $IMAGE_TAG"
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:$IMAGE_TAG .
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:$IMAGE_TAG
-
-      - name: Подключение к серверу и деплой
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          script: |
-            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:$IMAGE_TAG
-            docker stop my-app || true
-            docker rm my-app || true
-            docker run -d --name my-app -p 80:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:$IMAGE_TAG
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ env.IMAGE_TAG }} .
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ env.IMAGE_TAG }}
