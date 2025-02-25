@@ -1,18 +1,18 @@
-# Используем базовый образ Node.js
-FROM node:18-alpine
+# Используем базовый образ Nginx
+FROM nginx:alpine
 
-# Устанавливаем рабочую директорию
-WORKDIR /app
+# Удаляем стандартный конфиг Nginx
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Копируем файлы package.json и package-lock.json (если он есть)
-COPY package*.json ./
+# Копируем наш конфиг Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Копируем остальные файлы проекта
-COPY . .
+# Копируем статические файлы (если это фронтенд)
+COPY dist /usr/share/nginx/html
 
-# Запуск приложения (замени "index.js" на свою точку входа)
-CMD ["index.js"]
+# Открываем порт (по умолчанию 80)
+EXPOSE 80
 
-# Открываем порт (если необходимо)
-EXPOSE 3000
+# Запускаем Nginx
+CMD ["nginx", "-g", "daemon off;"]
 
