@@ -1,18 +1,13 @@
-# Используем базовый образ Nginx
-FROM nginx:alpine
+# Dockerfile
 
-# Удаляем стандартный конфиг Nginx
-RUN rm /etc/nginx/conf.d/default.conf
+FROM nginx:latest
 
-# Копируем наш конфиг Nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Копирование конфигурации в контейнер
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Копируем статические файлы (если это фронтенд)
-COPY dist /usr/share/nginx/html
+# Копирование сайта в контейнер
+COPY ./html /usr/share/nginx/html
 
-# Открываем порт (по умолчанию 80)
+# Открываем порт
 EXPOSE 80
-
-# Запускаем Nginx
-CMD ["nginx", "-g", "daemon off;"]
 
