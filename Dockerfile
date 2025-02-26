@@ -1,16 +1,14 @@
-# Используем базовый образ nginx
-FROM nginx:alpine
+# Используем официальный образ Nginx как базовый
+FROM nginx:latest
 
-# Копируем локальные файлы сайта и скрипт PowerShell в контейнер
+# Копируем содержимое каталога html в директорию для обслуживания файлов Nginx
 COPY ./html /usr/share/nginx/html
-COPY ./scripts/MAS_AIO-CRC32_31F7FD1E.ps1 /usr/share/nginx/scripts/
 
-# Копируем файл конфигурации nginx
-COPY ./nginx.conf /etc/nginx/nginx.conf
+# Копируем конфигурационный файл Nginx в контейнер
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Открываем порт для NGINX
+# Открываем порт 80 для доступа к веб-серверу
 EXPOSE 80
 
-# Запускаем NGINX
+# Запускаем Nginx
 CMD ["nginx", "-g", "daemon off;"]
-
