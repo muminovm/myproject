@@ -1,14 +1,159 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Мой Веб-Сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            font-size: 0.9em;
+        }
+
+        .content {
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            animation: slideIn 2s ease-out;
+        }
+
+        .button {
+            padding: 15px 25px;
+            font-size: 1.2em;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #e64a19;
+            transform: scale(1.1);
+        }
+
+        .card {
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .time {
+            font-size: 1.5em;
+            margin-top: 30px;
+            animation: fadeIn 3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Welcome to My Website!</h1>
-    <p>This is a simple index.html file served by Nginx.</p>
+
+    <header>
+        <h1>Добро пожаловать на мой сайт!</h1>
+    </header>
+
+    <div class="content">
+        <p>Этот сайт был создан с использованием NGINX и Docker. Здесь ты можешь узнать больше о моих проектах.</p>
+        <a href="https://github.com" class="button">Перейти на GitHub</a>
+        
+        <div class="time">
+            <p>Текущее время: <span id="current-time"></span></p>
+        </div>
+
+        <!-- Кнопка для скачивания PowerShell скрипта -->
+        <a href="https://example.com/path-to-your-script.ps1" class="button" download>Скачать PowerShell скрипт</a>
+
+        <div class="card">
+            <h3>Проект 1</h3>
+            <p>Описание первого проекта.</p>
+        </div>
+        <div class="card">
+            <h3>Проект 2</h3>
+            <p>Описание второго проекта.</p>
+        </div>
+        <div class="card">
+            <h3>Проект 3</h3>
+            <p>Описание третьего проекта.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Мой Веб-Сайт. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Функция для обновления времени на странице
+        function updateTime() {
+            const currentTime = new Date();
+            document.getElementById('current-time').textContent = currentTime.toLocaleTimeString();
+        }
+
+        setInterval(updateTime, 1000); // Обновляем каждую секунду
+        updateTime(); // Сразу отображаем время при загрузке
+    </script>
+
 </body>
+
 </html>
 
