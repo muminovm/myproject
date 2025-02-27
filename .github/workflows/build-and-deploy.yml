@@ -7,8 +7,10 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
-
+    runs-on: my-pc
+  deploy2:
+    runs-on: pc2
+    
     steps:
       - name: Checkout репозитория
         uses: actions/checkout@v4
@@ -36,3 +38,4 @@ jobs:
         run: |
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ env.IMAGE_TAG }}
           docker run -d --name my-app -p 80:80 ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ env.IMAGE_TAG }}
+
