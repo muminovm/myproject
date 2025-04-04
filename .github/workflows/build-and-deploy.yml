@@ -39,7 +39,7 @@ jobs:
           docker run -d --name my-app -p 80:80 ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:${{ env.IMAGE_TAG }}
 
   deploy2:
-    runs-on: pc2
+    runs-on: self-hosted
     
     steps:
       - name: Checkout репозитория
